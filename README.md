@@ -22,12 +22,12 @@ depend via Maven:
 <dependency>
   <groupId>run.cobalt</groupId>
   <artifactId>vortex</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 </dependency>
 ```
 or Gradle:
 ```kotlin
-implementation("run.cobalt:vortex:0.0.1")
+implementation("run.cobalt:vortex:0.0.2")
 ```
 
 ## :sparkles: Usecase

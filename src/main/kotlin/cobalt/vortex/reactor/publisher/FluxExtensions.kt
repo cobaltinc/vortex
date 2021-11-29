@@ -95,8 +95,8 @@ object FluxExt {
   fun <T, R> flatMap(f: (T) -> Mono<R>) = fun(p: Flux<T>): Flux<R> = p.flatMap(f)
 
   // flatMapTo
-  fun <T> flatMapTo(value: Supplier<out Flux<T>>) = fun(p: Flux<T>) = p.flatMap { value.get() }
-  fun <T, R> Flux<T>.flatMapTo(value: Supplier<out Flux<R>>): Flux<out R> = this.flatMap { value.get() }
+  fun <T> flatMapTo(value: Publisher<T>) = fun(p: Flux<T>) = p.flatMap { value }
+  fun <T, R> Flux<T>.flatMapTo(value: Publisher<R>): Flux<out R> = this.flatMap { value }
 
   // flatMapIterable
   fun <T, R> flatMapIterable(f: (T) -> Iterable<R>) = fun(p: Flux<T>): Flux<R> = p.flatMapIterable(f)

@@ -73,7 +73,7 @@ object MonoExt {
   fun <T, R> flatMapMany(f: (T) -> Publisher<R>) = fun(p: Mono<T>): Flux<R> = p.flatMapMany(f)
 
   // flatMapManyTo
-  fun <T, R> Mono<T>.flatMapManyTo(value: Supplier<out Flux<R>>): Flux<out R> = this.flatMapMany { value.get() }
+  fun <T, R> Mono<T>.flatMapManyTo(value: Publisher<R>): Flux<out R> = this.flatMapMany { value }
 
   // flatMapIterable
   fun <T, R> flatMapIterable(f: (T) -> Iterable<R>) = fun(p: Mono<T>): Flux<R> = p.flatMapIterable(f)
