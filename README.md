@@ -1,5 +1,5 @@
 <h1 align='center'>
-  Vortex 🛠
+  Vortex 🌀
 </h1>
 
 <p align="center"><strong>Kotlin functional extensions for Spring Webflux</strong></p>
