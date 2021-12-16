@@ -31,7 +31,57 @@ implementation("run.cobalt:vortex:0.0.2")
 ```
 
 ## :sparkles: Usecase
-WIP
+### Condition
+#### throwIf
+```kotlin
+Mono
+  .just(inputNumber)
+  .throwIf(Exception("Only take odd numbers")) { it % 2 == 0 }
+```
+Or,
+```kotlin
+this.userRepository
+  .findById(userId)
+  .throwIf(Exception("Banned user")) { it.banned }
+```
+
+#### iif
+```kotlin
+Mono
+  .just(inputNumber)
+  .iif(Mono.just("Even"), Mono.just("Odd")) { it % 2 == 0 }
+```
+
+### Pipe
+```kotlin
+Flux
+  .fromIterable(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+  .pipe(
+    MonoExt.filter { it % 2 == 0 },
+    MonoExt.reduce { t, t2 -> t + t2 }
+    MonoExt.map { it.toString() }
+  )
+```
+Or,
+```kotlin
+pipe(
+  Flux.fromIterable(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)),
+  FluxExt.filter { it % 2 == 0 },
+  FluxExt.reduce { t, t2 -> t + t2 }
+  MonoExt.map { it.toString() }
+)
+```
+
+### Function Composite
+```kotlin
+val sumToString = FluxExt.reduce<Int> { a, b -> a + b } then MonoExt.map { it.toString() }
+Flux
+  .fromIterable(listOf(1, 2, 3, 4, 5))
+  .pipe(
+    FluxExt.map { it.inc() },
+    sumToString
+  )
+```
 
 ## :page_facing_up: License
 
