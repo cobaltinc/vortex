@@ -85,4 +85,4 @@ Flux
 
 ## :page_facing_up: License
 
-Bloom is made available under the [MIT License](./LICENSE).
+Vortex is made available under the [MIT License](./LICENSE).
